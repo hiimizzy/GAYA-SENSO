@@ -5,17 +5,16 @@ import os
 from datetime import datetime
 from dotenv import load_dotenv
 
-# =============================
 # CONFIGURAÇÃO DA PÁGINA
-# =============================
+
 st.set_page_config(
     page_title="Qualidade do Ar",
     layout="centered"
 )
 
-# =============================
+
 # CARREGAR VARIÁVEIS DE AMBIENTE
-# =============================
+
 load_dotenv()
 
 WAQI_TOKEN = os.getenv("WAQI_TOKEN")
@@ -24,15 +23,15 @@ if not WAQI_TOKEN:
     st.error("❌ Token WAQI não encontrado. Verifique o arquivo .env")
     st.stop()  
 
-# =============================
+
 # CONFIGURAÇÕES
-# =============================
+
 CITY_URL = "https://api.waqi.info/feed/@8490/"  # Parque D. Pedro II
 DATA_PATH = "data/dataset.csv"
 
-# =============================
+
 # BUSCAR DADOS DA API
-# =============================
+
 def fetch_air_quality():
     url = f"{CITY_URL}?token={WAQI_TOKEN}"
     response = requests.get(url, timeout=10)
