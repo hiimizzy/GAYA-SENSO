@@ -20,7 +20,7 @@ load_dotenv()
 WAQI_TOKEN = os.getenv("WAQI_TOKEN")
 
 if not WAQI_TOKEN:
-    st.error("❌ Token WAQI não encontrado. Verifique o arquivo .env")
+    st.error("Token WAQI não encontrado. Verifique o arquivo .env")
     st.stop()  
 
 
@@ -58,9 +58,8 @@ def fetch_air_quality():
 
     return pd.DataFrame([row])
 
-# =============================
 # SALVAR DADOS NO CSV
-# =============================
+
 def save_data(df_new):
     os.makedirs(os.path.dirname(DATA_PATH), exist_ok=True)
 
@@ -76,9 +75,9 @@ def save_data(df_new):
 
     return df_all
 
-# =============================
+
 # INTERFACE STREAMLIT
-# =============================
+
 st.title("🌫️>⩊< Qualidade do Ar — Parque D. Pedro II (SP)")
 
 if st.button("📡 Coletar dados agora"):
@@ -89,9 +88,9 @@ if st.button("📡 Coletar dados agora"):
         st.success("Dados coletados e salvos com sucesso!")
         st.metric("AQI Atual", int(df_new["aqi"].iloc[0]))
 
-# =============================
-# VISUALIZAÇÃO DOS DADOS
-# =============================
+
+# VISUALIZAR OS DADOS
+
 if os.path.exists(DATA_PATH) and os.stat(DATA_PATH).st_size > 0:
     df = pd.read_csv(DATA_PATH)
     df["timestamp"] = pd.to_datetime(df["timestamp"])
@@ -103,6 +102,7 @@ if os.path.exists(DATA_PATH) and os.stat(DATA_PATH).st_size > 0:
     st.dataframe(df)
 else:
     st.info("Nenhum dado coletado ainda.")
+    
 # "c:\Users\arauj\OneDrive\Área de Trabalho\air_quality_sp\air_quality"
 # 
 # cd air_quality
