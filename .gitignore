@@ -1,0 +1,14 @@
+# Arquivo de variáveis de ambiente 
+.env
+
+# Pasta de dados gerados
+data/
+
+# Cache e artefatos do Python
+__pycache__/
+*.pyc
+
+# Ambientes virtuais
+.venv
+venv
+env
