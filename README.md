@@ -23,23 +23,6 @@
 
 ---
 
-## ✅ Correção do erro de caminho
-
-O erro anterior era:
-
-- `Erro ao carregar background real: ... No such file or directory: 'air_quality_sp.csv'`
-
-Isso ocorria quando o **current working directory (cwd)** do Streamlit não era o mesmo local do arquivo.
-
-A correção foi feita no `dashboard_xai.py` usando caminho relativo ao próprio script:
-
-- `BASE_DIR = os.path.dirname(os.path.abspath(__file__))`
-- `AIR_QUALITY_CSV_PATH = os.path.join(BASE_DIR, 'air_quality_sp.csv')`
-
-Assim o `pd.read_csv(AIR_QUALITY_CSV_PATH)` encontra o arquivo corretamente.
-
----
-
 ## ⚙️ Como executar
 
 1. Instale dependências:
