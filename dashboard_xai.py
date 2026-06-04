@@ -216,5 +216,5 @@ if st.button("🔍 Explicar esta previsão"):
         st.info(f"📉 Diminuíram o risco: {', '.join(neg['Horas atrás'].values)}")
 
 
-# sstreamlit run dashboard_xai.py
+# streamlit run dashboard_xai.py
 
