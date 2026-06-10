@@ -1,6 +1,5 @@
 # Monitor Inteligente de Qualidade do Ar (SP) + SHAP
-
-🍃🌳⛰️ Este projeto implementa um dashboard **Streamlit** para acompanhar e prever qualidade do ar em SP, com explicabilidade por **SHAP**.
+Este projeto implementa um dashboard **Streamlit** para acompanhar e prever qualidade do ar em SP, com explicabilidade por **SHAP**.
 
 ---
 
