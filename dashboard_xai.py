@@ -1,6 +1,4 @@
-# ============================================
 # dashboard_xai.py - COM SHAP KERNEL EXPLAINER
-# ============================================
 
 import streamlit as st
 st.set_page_config(page_title="Smart Fire Risk Monitor", layout="wide")
@@ -23,9 +21,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 AIR_QUALITY_CSV_PATH = os.path.join(BASE_DIR, 'air_quality_sp.csv')
 
 
-# ============================================
 # 1. CARREGAR MODELO E SCALER
-# ============================================
+
 @st.cache_resource
 def load_model_and_scaler():
     model = load_model('model.keras')
@@ -56,9 +53,8 @@ def load_model_and_scaler():
 model, scaler = load_model_and_scaler()
 WINDOW_SIZE = model.input_shape[1]
 
-# ============================================
-# 2. CONFIGURAÇÕES DA API (protegida com .env)
-# ============================================
+# 2. CONFIGURAÇÕES DA API 
+
 load_dotenv()
 WAQI_TOKEN = os.getenv("WAQI_TOKEN")
 if not WAQI_TOKEN:
@@ -68,9 +64,9 @@ if not WAQI_TOKEN:
 CITY_URL = "https://api.waqi.info/feed/brazil/sao-paulo/parque-d.pedro-ii/"
 HISTORY_PATH = "data/dataset.csv"
 
-# ============================================
+
 # 3. FUNÇÕES DE COLETA E HISTÓRICO
-# ============================================
+
 def fetch_current_data():
     response = requests.get(CITY_URL, params={"token": WAQI_TOKEN}, timeout=10)
     data = response.json()
@@ -117,10 +113,8 @@ def preprocess_input(raw_seq):
     scaled_flat = scaler.transform(flat)
     return scaled_flat.reshape(1, WINDOW_SIZE, 1)
 
-
-# ============================================
 # 4. EXPLAINER SHAP - KERNEL EXPLAINER
-# ============================================
+
 @st.cache_resource
 def load_shap_explainer():
     # Construir background a partir do dataset original
@@ -159,11 +153,12 @@ def load_shap_explainer():
 
 explainer = load_shap_explainer()
 
-# ============================================
+#-----------------------
+
+
 # 5. DASHBOARD PRINCIPAL
-# ============================================
-st.title("🌎 Monitor Inteligente de Qualidade do Ar")
-st.markdown('✦•┈๑⋅⋯ ⋯⋅๑┈•✦')
+
+st.title("Monitor Inteligente de Qualidade do Ar")
 st.markdown("Previsão de AQI com LSTM + Explicabilidade (SHAP)")
 
 if st.sidebar.button("🔄 Atualizar agora"):

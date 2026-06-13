@@ -4,17 +4,15 @@ import os
 from datetime import datetime
 from dotenv import load_dotenv
 
-# =========================
 # CONFIGURAÇÕES
-# =========================
+
 load_dotenv()
 WAQI_TOKEN = os.getenv("WAQI_TOKEN")
 CITY_URL = "https://api.waqi.info/feed/brazil/sao-paulo/parque-d.pedro-ii/"
 DATA_PATH = "data/dataset.csv"
 
-# =========================
-# FUNÇÃO DE COLETA
-# =========================
+# COLETA
+
 def fetch_data():
     response = requests.get(
         CITY_URL,
@@ -41,9 +39,8 @@ def fetch_data():
 
     return pd.DataFrame([row])
 
-# =========================
-# SALVAR NO CSV
-# =========================
+# SALVAR DADOS
+
 def save_data(df_new):
     os.makedirs("data", exist_ok=True)
 
@@ -55,9 +52,8 @@ def save_data(df_new):
 
     df_all.to_csv(DATA_PATH, index=False)
 
-# =========================
-# EXECUÇÃO
-# =========================
+
+#------------------------------------------------------------
 if __name__ == "__main__":
     df = fetch_data()
     save_data(df)
