@@ -1,7 +1,7 @@
 # dashboard_xai.py - COM SHAP KERNEL EXPLAINER
 
 import streamlit as st
-st.set_page_config(page_title="Smart Fire Risk Monitor", layout="wide")
+st.set_page_config(page_title="Smart Air Quality Monitor", layout="wide")
 
 # Imports
 import numpy as np
