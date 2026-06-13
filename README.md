@@ -1,6 +1,5 @@
 # Monitor Inteligente de Qualidade do Ar (SP) + SHAP
-
-🍃🌳⛰️ Este projeto implementa um dashboard **Streamlit** para acompanhar e prever qualidade do ar em SP, com explicabilidade por **SHAP**.
+Este projeto implementa um dashboard **Streamlit** para acompanhar e prever qualidade do ar em SP, com explicabilidade por **SHAP**.
 
 ---
 
@@ -20,23 +19,6 @@
 - O app tenta montar um **background real** para o `shap.KernelExplainer` usando janelas construídas a partir de `air_quality_sp.csv`.
 - Se houver falha (ex.: arquivo não encontrado), ele usa um background **aleatório** como fallback para não quebrar o dashboard.
 - Ao clicar em **“Explicar esta previsão”**, o SHAP calcula a contribuição de cada hora passada na previsão.
-
----
-
-## ✅ Correção do erro de caminho
-
-O erro anterior era:
-
-- `Erro ao carregar background real: ... No such file or directory: 'air_quality_sp.csv'`
-
-Isso ocorria quando o **current working directory (cwd)** do Streamlit não era o mesmo local do arquivo.
-
-A correção foi feita no `dashboard_xai.py` usando caminho relativo ao próprio script:
-
-- `BASE_DIR = os.path.dirname(os.path.abspath(__file__))`
-- `AIR_QUALITY_CSV_PATH = os.path.join(BASE_DIR, 'air_quality_sp.csv')`
-
-Assim o `pd.read_csv(AIR_QUALITY_CSV_PATH)` encontra o arquivo corretamente.
 
 ---
 
